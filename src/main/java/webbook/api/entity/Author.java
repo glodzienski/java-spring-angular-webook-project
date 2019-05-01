@@ -4,8 +4,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "tb_book")
-public class Book extends Model {
+@Table(name = "tb_author")
+public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -18,15 +18,14 @@ public class Book extends Model {
     @Column(nullable = false)
     private String name;
 
-    @Column(columnDefinition = "0")
-    private Integer views;
+    @NotNull
+    @Column(name = "last_name", nullable = false)
+    private String lastName;
 
-    @Column(columnDefinition = "0")
-    private Integer downloads;
+    @NotNull
+    @Column(name = "date_birthday", nullable = false)
+    private String dateBirthday;
 
-    @Column(columnDefinition = "false")
-    private Boolean active;
-
-    @Column(name = "file_path", nullable = false)
-    private String filePath;
+    @Column(name = "wikipedia_link")
+    private String wikipediaLink;
 }
