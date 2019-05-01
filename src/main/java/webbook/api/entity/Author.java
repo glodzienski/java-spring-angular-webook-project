@@ -28,4 +28,52 @@ public class Author {
 
     @Column(name = "wikipedia_link")
     private String wikipediaLink;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getDateBirthday() {
+        return dateBirthday;
+    }
+
+    public void setDateBirthday(String dateBirthday) {
+        this.dateBirthday = dateBirthday;
+    }
+
+    public String getWikipediaLink() {
+        return wikipediaLink;
+    }
+
+    public void setWikipediaLink(String wikipediaLink) {
+        this.wikipediaLink = wikipediaLink;
+    }
 }

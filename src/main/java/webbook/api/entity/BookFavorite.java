@@ -7,6 +7,7 @@ import javax.validation.constraints.NotNull;
 @Table(name = "tb_book_favorite")
 public class BookFavorite {
     @NotNull
+    @Id
     @Column(nullable = false, unique = true)
     private String code;
 }
