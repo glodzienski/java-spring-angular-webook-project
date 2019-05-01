@@ -18,23 +18,97 @@ public class Book extends Model {
     @Column(nullable = false)
     private String name;
 
-    @Column(columnDefinition = "0")
+    @Column(columnDefinition = "int default 0")
     private Integer views;
 
-    @Column(columnDefinition = "0")
+    @Column(columnDefinition = "int default 0")
     private Integer downloads;
 
-    @Column(columnDefinition = "false")
+    @Column(columnDefinition = "boolean default false")
     private Boolean active;
 
     @Column(name = "file_path", nullable = false)
     private String filePath;
 
     @NotNull
-    @JoinColumn(name = "book_info_id", referencedColumnName = "id", nullable = false)
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "book_info_id", nullable = false)
     private BookInfo bookInfo;
 
     @NotNull
-    @JoinColumn(name = "book_category_id", referencedColumnName = "id", nullable = false)
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "book_category_id", nullable = false)
     private BookCategory bookCategory;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Integer getViews() {
+        return views;
+    }
+
+    public void setViews(Integer views) {
+        this.views = views;
+    }
+
+    public Integer getDownloads() {
+        return downloads;
+    }
+
+    public void setDownloads(Integer downloads) {
+        this.downloads = downloads;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
+    }
+
+    public BookInfo getBookInfo() {
+        return bookInfo;
+    }
+
+    public void setBookInfo(BookInfo bookInfo) {
+        this.bookInfo = bookInfo;
+    }
+
+    public BookCategory getBookCategory() {
+        return bookCategory;
+    }
+
+    public void setBookCategory(BookCategory bookCategory) {
+        this.bookCategory = bookCategory;
+    }
 }

@@ -19,7 +19,7 @@ public class Plan {
     private String name;
 
     @NotNull
-    @Column(columnDefinition = "0")
+    @Column(columnDefinition = "int default 0")
     private Float value;
 
     public Integer getId() {
