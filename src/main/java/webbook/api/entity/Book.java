@@ -30,12 +30,10 @@ public class Book extends Model {
     @Column(name = "file_path", nullable = false)
     private String filePath;
 
-    @NotNull
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "book_info_id", nullable = false)
     private BookInfo bookInfo;
 
-    @NotNull
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "book_category_id", nullable = false)
     private BookCategory bookCategory;

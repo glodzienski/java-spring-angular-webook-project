@@ -31,7 +31,7 @@ public class UserService implements ApiCrudServiceContract<User> {
 
     @Override
     public User getByCode(String code) {
-        return null;
+        return repository.findByCode(code);
     }
 
     @Override

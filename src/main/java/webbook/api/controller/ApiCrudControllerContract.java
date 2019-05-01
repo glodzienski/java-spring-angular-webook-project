@@ -11,9 +11,6 @@ public interface ApiCrudControllerContract<Model> {
     Model update(@RequestBody @Valid Model model);
 
     @ResponseBody
-    Model getById(int id);
-
-    @ResponseBody
     Model getByCode(String code);
 
     @ResponseBody

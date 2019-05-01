@@ -2,6 +2,7 @@ package webbook.api.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 @Entity
 @Table(name = "tb_subscription_monthly")
@@ -16,8 +17,9 @@ public class SubscriptionMonthly extends Model {
     private Float value;
 
     @NotNull
+    @Temporal(TemporalType.DATE)
     @Column(name = "payment_date", nullable = false)
-    private String paymentDate;
+    private Date paymentDate;
 
     @NotNull
     @OneToOne(fetch = FetchType.LAZY)
@@ -45,11 +47,11 @@ public class SubscriptionMonthly extends Model {
         this.value = value;
     }
 
-    public String getPaymentDate() {
+    public Date getPaymentDate() {
         return paymentDate;
     }
 
-    public void setPaymentDate(String paymentDate) {
+    public void setPaymentDate(Date paymentDate) {
         this.paymentDate = paymentDate;
     }
 

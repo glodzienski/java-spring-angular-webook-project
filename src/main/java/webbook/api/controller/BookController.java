@@ -33,12 +33,6 @@ public class BookController implements ApiCrudControllerContract<Book> {
         return service.update(book);
     }
 
-    @GetMapping("{id}")
-    @Override
-    public Book getById(int id) {
-        return service.getById(id);
-    }
-
     @GetMapping("{code}")
     @Override
     public Book getByCode(String code) {

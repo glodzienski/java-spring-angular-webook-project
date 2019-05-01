@@ -6,4 +6,5 @@ import webbook.api.entity.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, String> {
+    User findByCode(String code);
 }

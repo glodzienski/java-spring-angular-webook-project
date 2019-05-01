@@ -1,5 +1,7 @@
 package webbook.api.controller;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import webbook.api.entity.User;
 import webbook.api.service.UserService;
@@ -28,15 +30,9 @@ public class UserController implements ApiCrudControllerContract<User> {
         return service.update(user);
     }
 
-    @GetMapping("{id}")
+    @GetMapping(value = "{code}")
     @Override
-    public User getById(int id) {
-        return service.getById(id);
-    }
-
-    @GetMapping("{code}")
-    @Override
-    public User getByCode(String code) {
+    public User getByCode(@PathVariable String code) {
         return service.getByCode(code);
     }
 

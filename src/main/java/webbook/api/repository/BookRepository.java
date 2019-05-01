@@ -6,4 +6,5 @@ import webbook.api.entity.Book;
 
 @Repository
 public interface BookRepository extends JpaRepository<Book, String> {
+    Book findByCode(String code);
 }

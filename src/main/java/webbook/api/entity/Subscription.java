@@ -2,6 +2,7 @@ package webbook.api.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 @Entity
 @Table(name = "tb_subscription")
@@ -15,11 +16,13 @@ public class Subscription extends Model {
     private String code;
 
     @NotNull
+    @Temporal(TemporalType.DATE)
     @Column(name = "hiring_date", nullable = false)
-    private String hiringDate;
+    private Date hiringDate;
 
+    @Temporal(TemporalType.DATE)
     @Column(name = "cancellation_date")
-    private String cancellationDate;
+    private Date cancellationDate;
 
     @NotNull
     @Column(name = "email_contact", nullable = false)
@@ -56,19 +59,19 @@ public class Subscription extends Model {
         this.code = code;
     }
 
-    public String getHiringDate() {
+    public Date getHiringDate() {
         return hiringDate;
     }
 
-    public void setHiringDate(String hiringDate) {
+    public void setHiringDate(Date hiringDate) {
         this.hiringDate = hiringDate;
     }
 
-    public String getCancellationDate() {
+    public Date getCancellationDate() {
         return cancellationDate;
     }
 
-    public void setCancellationDate(String cancellationDate) {
+    public void setCancellationDate(Date cancellationDate) {
         this.cancellationDate = cancellationDate;
     }
 

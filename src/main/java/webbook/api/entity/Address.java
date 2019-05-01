@@ -44,8 +44,8 @@ public class Address {
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "address_id", nullable = false)
-    private Address address;
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     public Integer getId() {
         return id;
@@ -119,11 +119,11 @@ public class Address {
         this.number = number;
     }
 
-    public Address getAddress() {
-        return address;
+    public User getUser() {
+        return user;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setUser(User user) {
+        this.user = user;
     }
 }

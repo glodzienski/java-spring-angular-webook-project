@@ -2,6 +2,7 @@ package webbook.api.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 @Entity
 @Table(name = "tb_book_info")
@@ -19,8 +20,9 @@ public class BookInfo extends Model {
     private String synopsis;
 
     @NotNull
+    @Temporal(TemporalType.DATE)
     @Column(name = "release_date", nullable = false)
-    private String releaseDate;
+    private Date releaseDate;
 
     public Integer getId() {
         return id;
@@ -46,11 +48,11 @@ public class BookInfo extends Model {
         this.synopsis = synopsis;
     }
 
-    public String getReleaseDate() {
+    public Date getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(String releaseDate) {
+    public void setReleaseDate(Date releaseDate) {
         this.releaseDate = releaseDate;
     }
 }
