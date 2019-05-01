@@ -7,7 +7,7 @@ interface ApiCrudServiceContract<Model> {
 
     Model getById(int id);
 
-    Model getByToken(String token);
+    Model getByCode(String code);
 
     Iterable<Model> list();
 

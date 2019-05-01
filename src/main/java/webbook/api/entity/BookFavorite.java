@@ -5,7 +5,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "tb_book_favorite")
-public class BookFavorite {
+public class BookFavorite extends Model {
     @NotNull
     @Id
     @Column(nullable = false, unique = true)

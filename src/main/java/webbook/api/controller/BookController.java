@@ -39,10 +39,10 @@ public class BookController implements ApiCrudControllerContract<Book> {
         return service.getById(id);
     }
 
-    @GetMapping("{token}")
+    @GetMapping("{code}")
     @Override
-    public Book getByToken(String token) {
-        return service.getByToken(token);
+    public Book getByCode(String code) {
+        return service.getByCode(code);
     }
 
     @GetMapping(produces = "application/json")

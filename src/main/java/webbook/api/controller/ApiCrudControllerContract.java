@@ -14,7 +14,7 @@ public interface ApiCrudControllerContract<Model> {
     Model getById(int id);
 
     @ResponseBody
-    Model getByToken(String token);
+    Model getByCode(String code);
 
     @ResponseBody
     Iterable<Model> list();

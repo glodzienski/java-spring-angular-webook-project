@@ -5,7 +5,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "tb_subscription_monthly")
-public class SubscriptionMonthly {
+public class SubscriptionMonthly extends Model {
     @NotNull
     @Id
     @Column(nullable = false, unique = true)

@@ -2,45 +2,45 @@ package webbook.api.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import webbook.api.entity.Book;
-import webbook.api.repository.BookRepository;
+import webbook.api.entity.User;
+import webbook.api.repository.UserRepository;
 
 @Service
-public class BookService implements ApiCrudServiceContract<Book> {
+public class UserService implements ApiCrudServiceContract<User> {
     @Autowired
-    private BookRepository repository;
+    private UserRepository repository;
 
-    public BookService(BookRepository repository) {
+    public UserService(UserRepository repository) {
         this.repository = repository;
     }
 
     @Override
-    public Book store(Book book) {
+    public User store(User book) {
         return repository.save(book);
     }
 
     @Override
-    public Book update(Book book) {
+    public User update(User book) {
         return null;
     }
 
     @Override
-    public Book getById(int id) {
+    public User getById(int id) {
         return null;
     }
 
     @Override
-    public Book getByCode(String code) {
+    public User getByCode(String code) {
         return null;
     }
 
     @Override
-    public Iterable<Book> list() {
+    public Iterable<User> list() {
         return null;
     }
 
     @Override
-    public Book destroy(Book book) {
+    public User destroy(User book) {
         return null;
     }
 }

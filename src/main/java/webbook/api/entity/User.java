@@ -2,10 +2,11 @@ package webbook.api.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 @Table(name = "tb_user")
-class User {
+public class User extends Model {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -41,4 +42,7 @@ class User {
     @NotNull
     @Column(name = "photo_url")
     private String photoUrl;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "tb_address")
+    private List<Address> address;
 }
