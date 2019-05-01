@@ -1,6 +1,7 @@
 package webbook.api.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "tb_book")
@@ -9,22 +10,25 @@ public class Book extends Model {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "nome")
-    private String nome;
+    @NotNull
+    @Column(nullable = false, unique = true)
+    private String code;
 
-    public Integer getId() {
-        return id;
-    }
+    @NotNull
+    @Column(nullable = false)
+    private String name;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    @Column(columnDefinition = "0")
+    private Integer views;
 
-    public String getNome() {
-        return nome;
-    }
+    @Column(columnDefinition = "0")
+    private Integer downloads;
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+    @Column(columnDefinition = "false")
+    private Boolean active;
+
+    @Column(name = "file_path", nullable = false)
+    private String filePath;
+
+
 }
