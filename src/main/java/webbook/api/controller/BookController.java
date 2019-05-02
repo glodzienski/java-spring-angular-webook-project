@@ -18,7 +18,6 @@ public class BookController implements ApiCrudControllerContract<Book> {
         this.service = service;
     }
 
-    @PostMapping
     @Override
     public Book store(@Valid Book book) {
         return service.store(book);
@@ -34,13 +33,11 @@ public class BookController implements ApiCrudControllerContract<Book> {
         return service.update(currentBook, book);
     }
 
-    @GetMapping("{code}")
     @Override
     public Book getByCode(@PathVariable String code) {
         return service.getByCode(code);
     }
 
-    @GetMapping(produces = "application/json")
     @Override
     public Iterable<Book> list() {
         return service.list();

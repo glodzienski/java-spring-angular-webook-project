@@ -18,6 +18,7 @@ public class BookCategoryService implements ApiCrudServiceContract<BookCategory>
     @Override
     public BookCategory store(BookCategory bookCategory) {
         bookCategory.setCode(UUIDGeneratorUtil.get());
+
         return repository.save(bookCategory);
     }
 
@@ -41,7 +42,7 @@ public class BookCategoryService implements ApiCrudServiceContract<BookCategory>
 
     @Override
     public Iterable<BookCategory> list() {
-        return null;
+        return repository.findAll();
     }
 
     @Override

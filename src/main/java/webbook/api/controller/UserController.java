@@ -18,7 +18,6 @@ public class UserController implements ApiCrudControllerContract<User> {
         this.service = service;
     }
 
-    @PostMapping
     @Override
     public User store(@Valid User user) {
         return service.store(user);
@@ -34,13 +33,11 @@ public class UserController implements ApiCrudControllerContract<User> {
         return service.update(currentUser, user);
     }
 
-    @GetMapping(value = "{code}")
     @Override
     public User getByCode(@PathVariable String code) {
         return service.getByCode(code);
     }
 
-    @GetMapping(produces = "application/json")
     @Override
     public Iterable<User> list() {
         return service.list();
