@@ -1,7 +1,5 @@
 package webbook.api.controller;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import webbook.api.entity.User;
 import webbook.api.service.UserService;
@@ -24,9 +22,10 @@ public class UserController implements ApiCrudControllerContract<User> {
         return service.store(user);
     }
 
-    @PutMapping
     @Override
-    public User update(@Valid User user) {
+    public User update(String code, @Valid User user) {
+        user.setCode(code);
+
         return service.update(user);
     }
 

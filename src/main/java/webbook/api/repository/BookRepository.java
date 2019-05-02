@@ -1,10 +1,9 @@
 package webbook.api.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import webbook.api.entity.Book;
 
 @Repository
-public interface BookRepository extends JpaRepository<Book, String> {
+public interface BookRepository extends BaseRepository<Book, String> {
     Book findByCode(String code);
 }

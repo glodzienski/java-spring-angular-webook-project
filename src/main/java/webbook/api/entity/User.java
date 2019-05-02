@@ -12,7 +12,6 @@ public class User extends Model {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotNull
     @Column(nullable = false, unique = true)
     private String code;
 
@@ -41,7 +40,6 @@ public class User extends Model {
     @Column(name = "last_name", nullable = false)
     private String lastName;
 
-    @NotNull
     @Column(name = "photo_url")
     private String photoUrl;
 
