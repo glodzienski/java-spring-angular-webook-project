@@ -10,7 +10,6 @@ public class Plan extends Model {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotNull
     @Column(nullable = false, unique = true)
     private String code;
 
