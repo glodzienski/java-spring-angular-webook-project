@@ -1,6 +1,8 @@
 package webbook.api.controller;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import webbook.api.entity.BookCategory;
 import webbook.api.service.BookCategoryService;
 
@@ -22,14 +24,14 @@ public class BookCategoryController implements ApiCrudControllerContract<BookCat
         return service.store(bookCategory);
     }
 
-//    @PutMapping("teste/{code}")
-
-
     @Override
     public BookCategory update(String code, @Valid BookCategory bookCategory) {
-        bookCategory.setCode(code);
+        BookCategory currentBookCategory = service.getByCode(code);
+        if (currentBookCategory == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Categoria de livro solicitada não encontrada.");
+        }
 
-        return service.update(bookCategory);
+        return service.update(currentBookCategory, bookCategory);
     }
 
     @GetMapping("{code}")
@@ -44,9 +46,13 @@ public class BookCategoryController implements ApiCrudControllerContract<BookCat
         return service.list();
     }
 
-    @DeleteMapping
     @Override
-    public BookCategory destroy(BookCategory bookCategory) {
-        return service.destroy(bookCategory);
+    public void destroy(String code) {
+        BookCategory bookCategory = service.getByCode(code);
+        if (bookCategory == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Categoria de livro solicitada não encontrada.");
+        }
+
+        service.destroy(bookCategory);
     }
 }

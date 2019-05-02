@@ -1,10 +1,7 @@
 package webbook.api.service;
 
-import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 import webbook.api.entity.BookCategory;
 import webbook.api.repository.BookCategoryRepository;
 import webbook.api.util.UUIDGeneratorUtil;
@@ -25,15 +22,9 @@ public class BookCategoryService implements ApiCrudServiceContract<BookCategory>
     }
 
     @Override
-    public BookCategory update(BookCategory bookCategory) {
-        BookCategory currentBookCategory = repository.findByCode(bookCategory.getCode());
-
-        if (currentBookCategory == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Categoria de livro solicitada não encontrada.");
-        }
-
-        currentBookCategory.setName(bookCategory.getName());
-        currentBookCategory.setDescription(bookCategory.getDescription());
+    public BookCategory update(BookCategory currentBookCategory, BookCategory requestBookCategory) {
+        currentBookCategory.setName(requestBookCategory.getName());
+        currentBookCategory.setDescription(requestBookCategory.getDescription());
 
         return repository.save(currentBookCategory);
     }
@@ -45,7 +36,7 @@ public class BookCategoryService implements ApiCrudServiceContract<BookCategory>
 
     @Override
     public BookCategory getByCode(String code) {
-        return null;
+        return repository.findByCode(code);
     }
 
     @Override
@@ -54,7 +45,7 @@ public class BookCategoryService implements ApiCrudServiceContract<BookCategory>
     }
 
     @Override
-    public BookCategory destroy(BookCategory bookCategory) {
-        return null;
+    public void destroy(BookCategory bookCategory) {
+        repository.delete(bookCategory);
     }
 }

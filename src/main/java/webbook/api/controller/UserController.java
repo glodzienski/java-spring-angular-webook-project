@@ -1,6 +1,8 @@
 package webbook.api.controller;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import webbook.api.entity.User;
 import webbook.api.service.UserService;
 
@@ -24,9 +26,12 @@ public class UserController implements ApiCrudControllerContract<User> {
 
     @Override
     public User update(String code, @Valid User user) {
-        user.setCode(code);
+        User currentUser = service.getByCode(code);
+        if (currentUser == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado.");
+        }
 
-        return service.update(user);
+        return service.update(currentUser, user);
     }
 
     @GetMapping(value = "{code}")
@@ -41,9 +46,13 @@ public class UserController implements ApiCrudControllerContract<User> {
         return service.list();
     }
 
-    @DeleteMapping
     @Override
-    public User destroy(User user) {
-        return service.destroy(user);
+    public void destroy(String code) {
+        User user = service.getByCode(code);
+        if (user == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado.");
+        }
+
+        service.destroy(user);
     }
 }

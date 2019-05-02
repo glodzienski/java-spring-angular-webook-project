@@ -20,7 +20,7 @@ public class BookService implements ApiCrudServiceContract<Book> {
     }
 
     @Override
-    public Book update(Book book) {
+    public Book update(Book currentBook, Book requestBook) {
         return null;
     }
 
@@ -40,7 +40,7 @@ public class BookService implements ApiCrudServiceContract<Book> {
     }
 
     @Override
-    public Book destroy(Book book) {
-        return null;
+    public void destroy(Book book) {
+        repository.delete(book);
     }
 }

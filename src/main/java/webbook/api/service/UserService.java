@@ -27,7 +27,7 @@ public class UserService implements ApiCrudServiceContract<User> {
     }
 
     @Override
-    public User update(User user) {
+    public User update(User currentUser, User requestUser) {
         return null;
     }
 
@@ -47,7 +47,7 @@ public class UserService implements ApiCrudServiceContract<User> {
     }
 
     @Override
-    public User destroy(User user) {
-        return null;
+    public void destroy(User user) {
+        repository.delete(user);
     }
 }

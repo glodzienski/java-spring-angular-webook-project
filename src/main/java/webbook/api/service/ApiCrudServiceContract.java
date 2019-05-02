@@ -1,11 +1,9 @@
 package webbook.api.service;
 
-import javassist.NotFoundException;
-
 interface ApiCrudServiceContract<Model> {
     Model store(Model model);
 
-    Model update(Model model) throws NotFoundException;
+    Model update(Model currentModel, Model requestModel);
 
     Model getById(int id);
 
@@ -13,5 +11,5 @@ interface ApiCrudServiceContract<Model> {
 
     Iterable<Model> list();
 
-    Model destroy(Model model);
+    void destroy(Model model);
 }

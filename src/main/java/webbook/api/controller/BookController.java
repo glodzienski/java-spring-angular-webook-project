@@ -2,7 +2,9 @@ package webbook.api.controller;
 
 import javax.validation.Valid;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import webbook.api.entity.Book;
 import webbook.api.service.BookService;
 
@@ -24,9 +26,12 @@ public class BookController implements ApiCrudControllerContract<Book> {
 
     @Override
     public Book update(String code, @Valid Book book) {
-        book.setCode(code);
-        
-        return service.update(book);
+        Book currentBook = service.getByCode(code);
+        if (currentBook == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Obra não encontrada.");
+        }
+
+        return service.update(currentBook, book);
     }
 
     @GetMapping("{code}")
@@ -41,9 +46,13 @@ public class BookController implements ApiCrudControllerContract<Book> {
         return service.list();
     }
 
-    @DeleteMapping
     @Override
-    public Book destroy(Book book) {
-        return service.destroy(book);
+    public void destroy(String code) {
+        Book book = service.getByCode(code);
+        if (book == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Obra não encontrada.");
+        }
+
+        service.destroy(book);
     }
 }
