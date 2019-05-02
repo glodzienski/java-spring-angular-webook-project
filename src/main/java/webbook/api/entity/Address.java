@@ -10,7 +10,6 @@ public class Address {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotNull
     @Column(nullable = false, unique = true)
     private String code;
 
@@ -42,7 +41,6 @@ public class Address {
     @Column(nullable = false)
     private Integer number;
 
-    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
