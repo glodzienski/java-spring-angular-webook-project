@@ -28,7 +28,13 @@ public class UserService implements ApiCrudServiceContract<User> {
 
     @Override
     public User update(User currentUser, User requestUser) {
-        return null;
+        currentUser.setBirthdayDate(requestUser.getBirthdayDate());
+        currentUser.setCpf(requestUser.getCpf());
+        currentUser.setName(requestUser.getName());
+        currentUser.setLastName(requestUser.getLastName());
+        currentUser.setPhotoUrl(requestUser.getPhotoUrl());
+
+        return currentUser;
     }
 
     @Override
@@ -41,9 +47,13 @@ public class UserService implements ApiCrudServiceContract<User> {
         return repository.findByCode(code);
     }
 
+    public User getByEmail(String email) {
+        return repository.findByEmail(email);
+    }
+
     @Override
     public Iterable<User> list() {
-        return null;
+        return repository.findAll();
     }
 
     @Override

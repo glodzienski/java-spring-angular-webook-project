@@ -6,4 +6,6 @@ import webbook.api.entity.User;
 @Repository
 public interface UserRepository extends BaseRepository<User, String> {
     User findByCode(String code);
+
+    User findByEmail(String email);
 }

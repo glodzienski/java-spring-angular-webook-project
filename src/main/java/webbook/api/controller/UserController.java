@@ -20,6 +20,11 @@ public class UserController implements ApiCrudControllerContract<User> {
 
     @Override
     public User store(@Valid User user) {
+        User currentUser = service.getByEmail(user.getEmail());
+        if (currentUser != null) {
+            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "Usuário com email " + user.getEmail() + " já possui conta no sistema.");
+        }
+
         return service.store(user);
     }
 
