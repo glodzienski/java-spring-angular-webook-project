@@ -21,7 +21,11 @@ public class BookService implements ApiCrudServiceContract<Book> {
 
     @Override
     public Book update(Book currentBook, Book requestBook) {
-        return null;
+        currentBook.setActive(requestBook.getActive());
+        currentBook.setFilePath(requestBook.getFilePath());
+        currentBook.setName(requestBook.getName());
+
+        return repository.save(currentBook);
     }
 
     @Override
@@ -31,12 +35,12 @@ public class BookService implements ApiCrudServiceContract<Book> {
 
     @Override
     public Book getByCode(String code) {
-        return null;
+        return repository.findByCode(code);
     }
 
     @Override
     public Iterable<Book> list() {
-        return null;
+        return repository.findAll();
     }
 
     @Override
