@@ -11,11 +11,9 @@ public class Subscription extends Model {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotNull
     @Column(nullable = false, unique = true)
     private String code;
 
-    @NotNull
     @Temporal(TemporalType.DATE)
     @Column(name = "hiring_date", nullable = false)
     private Date hiringDate;
@@ -24,11 +22,9 @@ public class Subscription extends Model {
     @Column(name = "cancellation_date")
     private Date cancellationDate;
 
-    @NotNull
     @Column(name = "email_contact", nullable = false)
     private String emailContact;
 
-    @NotNull
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;

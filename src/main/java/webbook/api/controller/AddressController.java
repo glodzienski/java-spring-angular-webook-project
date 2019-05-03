@@ -22,6 +22,8 @@ public class AddressController implements ApiCrudControllerContract<Address> {
 
     @Override
     public Address store(@Valid Address address) {
+        // TODO falta setar usuário logado no address
+
         return service.store(address);
     }
 
