@@ -1,7 +1,6 @@
 package webbook.api.service;
 
 import org.jetbrains.annotations.Contract;
-import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import webbook.api.entity.User;
@@ -21,7 +20,7 @@ public class UserService implements ApiCrudServiceContract<User> {
     @Override
     public User store(User user) {
         user.setCode(UUIDGeneratorUtil.get());
-        user.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt()));
+        user.setPassword("");
 
         return repository.save(user);
     }
