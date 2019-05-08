@@ -22,7 +22,7 @@ public class Author {
     private String lastName;
 
     @NotNull
-    @Column(name = "date_birthday", nullable = false)
+    @Column(name = "birthday_date", nullable = false)
     private String dateBirthday;
 
     @Column(name = "wikipedia_link")

@@ -16,10 +16,14 @@ public class SubscriptionMonthly extends Model {
     @Column(columnDefinition = "int default 0")
     private Float value;
 
+    @Temporal(TemporalType.DATE)
+    @Column(name = "payment_date")
+    private Date paymentDate;
+
     @NotNull
     @Temporal(TemporalType.DATE)
-    @Column(name = "payment_date", nullable = false)
-    private Date paymentDate;
+    @Column(name = "payday", nullable = false)
+    private Date payday;
 
     @NotNull
     @OneToOne(fetch = FetchType.LAZY)
@@ -30,6 +34,14 @@ public class SubscriptionMonthly extends Model {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "address_id", nullable = false)
     private Address address;
+
+    public Date getPayday() {
+        return payday;
+    }
+
+    public void setPayday(Date payday) {
+        this.payday = payday;
+    }
 
     public String getCode() {
         return code;
