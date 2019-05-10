@@ -3,7 +3,9 @@ package webbook.api.entity;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_user")
@@ -45,6 +47,10 @@ public class User extends Model {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private List<Address> address;
+
+    @OneToMany(mappedBy = "user", targetEntity = UserAuthority.class, cascade = {
+            CascadeType.ALL }, orphanRemoval = true, fetch = FetchType.EAGER)
+    private Set<UserAuthority> userAuthorities = new HashSet<UserAuthority>();
 
     public Integer getId() {
         return id;
@@ -124,5 +130,13 @@ public class User extends Model {
 
     public void setAddress(List<Address> address) {
         this.address = address;
+    }
+
+    public Set<UserAuthority> getUserAuthorities() {
+        return userAuthorities;
+    }
+
+    public void setUserAuthorities(Set<UserAuthority> userAuthorities) {
+        this.userAuthorities = userAuthorities;
     }
 }
