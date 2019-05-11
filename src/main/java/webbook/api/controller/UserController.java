@@ -1,9 +1,11 @@
 package webbook.api.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-import webbook.api.entity.User;
+import webbook.api.config.PublicRoute;
+import webbook.api.model.User;
 import webbook.api.service.UserService;
 
 import javax.validation.Valid;
@@ -12,12 +14,10 @@ import javax.validation.Valid;
 @RequestMapping("/api/user")
 public class UserController implements ApiCrudControllerContract<User> {
 
+    @Autowired
     private UserService service;
 
-    public UserController(UserService service) {
-        this.service = service;
-    }
-
+    @PublicRoute
     @Override
     public User store(@Valid User user) {
         User currentUser = service.getByEmail(user.getEmail());

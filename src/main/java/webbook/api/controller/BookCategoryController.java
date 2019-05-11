@@ -1,9 +1,10 @@
 package webbook.api.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-import webbook.api.entity.BookCategory;
+import webbook.api.model.BookCategory;
 import webbook.api.service.BookCategoryService;
 
 import javax.validation.Valid;
@@ -12,11 +13,8 @@ import javax.validation.Valid;
 @RequestMapping("/api/book/category")
 public class BookCategoryController implements ApiCrudControllerContract<BookCategory> {
 
+    @Autowired
     private BookCategoryService service;
-
-    public BookCategoryController(BookCategoryService service) {
-        this.service = service;
-    }
 
     @Override
     public BookCategory store(@Valid BookCategory bookCategory) {

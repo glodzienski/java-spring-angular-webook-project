@@ -1,12 +1,11 @@
-package webbook.api.entity;
+package webbook.api.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.Date;
 
 @Entity
-@Table(name = "tb_publisher")
-public class Publisher extends Model {
+@Table(name = "tb_book_category")
+public class BookCategory extends Model {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -19,13 +18,8 @@ public class Publisher extends Model {
     private String name;
 
     @NotNull
-    @Temporal(TemporalType.DATE)
-    @Column(name = "foundation_date", nullable = false)
-    private Date foundationDate;
-
-    @NotNull
-    @Column(name = "email_contact", nullable = false)
-    private String emailContact;
+    @Column(name = "description", nullable = false)
+    private String description;
 
     public Integer getId() {
         return id;
@@ -51,19 +45,11 @@ public class Publisher extends Model {
         this.name = name;
     }
 
-    public Date getFoundationDate() {
-        return foundationDate;
+    public String getDescription() {
+        return description;
     }
 
-    public void setFoundationDate(Date foundationDate) {
-        this.foundationDate = foundationDate;
-    }
-
-    public String getEmailContact() {
-        return emailContact;
-    }
-
-    public void setEmailContact(String emailContact) {
-        this.emailContact = emailContact;
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

@@ -3,7 +3,7 @@ package webbook.api.service;
 import org.jetbrains.annotations.Contract;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import webbook.api.entity.Subscription;
+import webbook.api.model.Subscription;
 import webbook.api.repository.SubscriptionRepository;
 import webbook.api.util.UUIDGeneratorUtil;
 

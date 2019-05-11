@@ -2,12 +2,14 @@ package webbook.api.controller;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-import webbook.api.entity.Book;
-import webbook.api.entity.BookCategory;
-import webbook.api.entity.BookInfo;
+import webbook.api.config.PublicRoute;
+import webbook.api.model.Book;
+import webbook.api.model.BookCategory;
+import webbook.api.model.BookInfo;
 import webbook.api.service.BookCategoryService;
 import webbook.api.service.BookInfoService;
 import webbook.api.service.BookService;
@@ -17,16 +19,16 @@ import webbook.api.util.UUIDGeneratorUtil;
 @RequestMapping("/api/book")
 public class BookController implements ApiCrudControllerContract<Book> {
 
+    @Autowired
     private BookService service;
+
+    @Autowired
     private BookCategoryService bookCategoryService;
+
+    @Autowired
     private BookInfoService bookInfoService;
 
-    public BookController(BookService service, BookCategoryService bookCategoryService, BookInfoService bookInfoService) {
-        this.service = service;
-        this.bookCategoryService = bookCategoryService;
-        this.bookInfoService= bookInfoService;
-    }
-
+    @PublicRoute
     @Override
     public Book store(@Valid Book book) {
         // Validando se a categoria da obra enviada existe
@@ -81,6 +83,7 @@ public class BookController implements ApiCrudControllerContract<Book> {
         return service.getByCode(code);
     }
 
+    @PublicRoute
     @Override
     public Iterable<Book> list() {
         return service.list();

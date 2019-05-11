@@ -1,13 +1,14 @@
 package webbook.api.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
-import webbook.api.entity.Address;
-import webbook.api.entity.Plan;
-import webbook.api.entity.Subscription;
+import webbook.api.model.Address;
+import webbook.api.model.Plan;
+import webbook.api.model.Subscription;
 import webbook.api.service.AddressService;
 import webbook.api.service.PlanService;
 import webbook.api.service.SubscriptionService;
@@ -18,15 +19,14 @@ import javax.validation.Valid;
 @RequestMapping("/api/subscription")
 public class SubscriptionController implements ApiCrudControllerContract<Subscription> {
 
+    @Autowired
     private SubscriptionService service;
-    private PlanService planService;
-    private AddressService addressService;
 
-    public SubscriptionController(SubscriptionService service, PlanService planService, AddressService addressService) {
-        this.service = service;
-        this.planService = planService;
-        this.addressService = addressService;
-    }
+    @Autowired
+    private PlanService planService;
+
+    @Autowired
+    private AddressService addressService;
 
     @Override
     public Subscription store(@Valid Subscription subscription) {

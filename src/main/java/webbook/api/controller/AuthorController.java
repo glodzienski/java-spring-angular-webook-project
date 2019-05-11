@@ -1,11 +1,12 @@
 package webbook.api.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
-import webbook.api.entity.Author;
+import webbook.api.model.Author;
 import webbook.api.service.AuthorService;
 
 import javax.validation.Valid;
@@ -14,11 +15,8 @@ import javax.validation.Valid;
 @RequestMapping("/api/author")
 public class AuthorController implements ApiCrudControllerContract<Author> {
 
+    @Autowired
     private AuthorService service;
-
-    public AuthorController(AuthorService service) {
-        this.service = service;
-    }
 
     @Override
     public Author store(@Valid Author author) {

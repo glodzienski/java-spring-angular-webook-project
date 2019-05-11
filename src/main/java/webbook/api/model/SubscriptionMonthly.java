@@ -1,4 +1,4 @@
-package webbook.api.entity;
+package webbook.api.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

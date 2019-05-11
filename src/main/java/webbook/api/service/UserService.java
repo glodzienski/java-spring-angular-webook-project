@@ -3,7 +3,7 @@ package webbook.api.service;
 import org.jetbrains.annotations.Contract;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import webbook.api.entity.User;
+import webbook.api.model.User;
 import webbook.api.repository.UserRepository;
 import webbook.api.util.UUIDGeneratorUtil;
 
@@ -37,6 +37,16 @@ public class UserService implements ApiCrudServiceContract<User> {
     }
 
     @Override
+    public Iterable<User> list() {
+        return repository.findAll();
+    }
+
+    @Override
+    public void destroy(User user) {
+        repository.delete(user);
+    }
+
+    @Override
     public User getById(int id) {
         return null;
     }
@@ -48,15 +58,5 @@ public class UserService implements ApiCrudServiceContract<User> {
 
     public User getByEmail(String email) {
         return repository.findByEmail(email);
-    }
-
-    @Override
-    public Iterable<User> list() {
-        return repository.findAll();
-    }
-
-    @Override
-    public void destroy(User user) {
-        repository.delete(user);
     }
 }

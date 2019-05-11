@@ -2,10 +2,8 @@ package webbook.api.service;
 
 import org.jetbrains.annotations.Contract;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
-import webbook.api.entity.Publisher;
+import webbook.api.model.Publisher;
 import webbook.api.repository.PublisherRepository;
 import webbook.api.util.UUIDGeneratorUtil;
 

@@ -5,7 +5,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
-import webbook.api.entity.Plan;
+import webbook.api.config.PublicRoute;
+import webbook.api.model.Plan;
 import webbook.api.service.PlanService;
 
 import javax.validation.Valid;
@@ -21,6 +22,7 @@ public class PlanController implements ApiCrudControllerContract<Plan> {
     }
 
     @Override
+    @PublicRoute
     public Plan store(@Valid Plan user) {
         return service.store(user);
     }
