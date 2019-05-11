@@ -1,7 +1,7 @@
 package webbook.api.service;
 
-import org.jetbrains.annotations.Contract;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import webbook.api.model.User;
 import webbook.api.repository.UserRepository;
@@ -12,15 +12,13 @@ public class UserService implements ApiCrudServiceContract<User> {
     @Autowired
     private UserRepository repository;
 
-    @Contract(pure = true)
-    public UserService(UserRepository repository) {
-        this.repository = repository;
-    }
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public User store(User user) {
         user.setCode(UUIDGeneratorUtil.get());
-        user.setPassword("");
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         return repository.save(user);
     }

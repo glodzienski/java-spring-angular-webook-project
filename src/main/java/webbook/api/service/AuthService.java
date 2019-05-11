@@ -27,7 +27,7 @@ public class AuthService {
     }
 
     public Boolean validatePassword (AuthLoginDTO authLoginDTO, User user) {
-        return user.getPassword().equals(passwordEncoder.encode(authLoginDTO.password));
+        return passwordEncoder.matches(authLoginDTO.password, user.getPassword());
     }
 
     public AuthToken getActiveAuthTokenOfUser(User user) {

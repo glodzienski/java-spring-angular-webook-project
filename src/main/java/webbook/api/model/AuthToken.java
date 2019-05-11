@@ -6,7 +6,6 @@ import javax.persistence.*;
 @Table(name = "tb_auth_token")
 public class AuthToken {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String token;
 
     @Column(columnDefinition = "boolean default true")

@@ -17,8 +17,8 @@ public class UserController implements ApiCrudControllerContract<User> {
     @Autowired
     private UserService service;
 
-    @PublicRoute
     @Override
+    @PublicRoute
     public User store(@Valid User user) {
         User currentUser = service.getByEmail(user.getEmail());
         if (currentUser != null) {

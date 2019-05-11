@@ -3,6 +3,7 @@ package webbook.api.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
@@ -27,7 +28,7 @@ public class AuthController {
 
     @PublicRoute
     @PostMapping("login")
-    public String login(@Valid AuthLoginDTO authLoginDTO) {
+    public String login(@RequestBody @Valid AuthLoginDTO authLoginDTO) {
         User user = userService.getByEmail(authLoginDTO.email);
         if (user == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário com email " + authLoginDTO.email + " não cadastrado na plataforma.");
