@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
+import webbook.api.config.AuthSingleton;
 import webbook.api.config.PublicRoute;
 import webbook.api.dto.AuthLoginDTO;
 import webbook.api.model.AuthToken;
@@ -24,8 +25,8 @@ public class AuthController {
     @Autowired
     private AuthService authService;
 
-    @PostMapping
     @PublicRoute
+    @PostMapping("login")
     public String login(@Valid AuthLoginDTO authLoginDTO) {
         User user = userService.getByEmail(authLoginDTO.email);
         if (user == null) {
@@ -44,5 +45,10 @@ public class AuthController {
         }
 
         throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "Dados de login informados estão incorretos.");
+    }
+
+    @PostMapping("logout")
+    public void logout(){
+        authService.invalidateAuthToken(AuthSingleton.getAuthToken());
     }
 }
