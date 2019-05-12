@@ -1,5 +1,7 @@
 package webbook.api.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
@@ -8,6 +10,7 @@ import java.util.List;
 @Entity
 @Table(name = "tb_user")
 public class User extends Model {
+    @JsonIgnore
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -43,7 +46,8 @@ public class User extends Model {
     @Column(name = "photo_url")
     private String photoUrl;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    @JsonIgnore
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
     private List<Address> address;
 
     public Integer getId() {

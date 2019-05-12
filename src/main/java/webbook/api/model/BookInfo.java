@@ -1,5 +1,7 @@
 package webbook.api.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
@@ -7,6 +9,7 @@ import java.util.Date;
 @Entity
 @Table(name = "tb_book_info")
 public class BookInfo extends Model {
+    @JsonIgnore
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

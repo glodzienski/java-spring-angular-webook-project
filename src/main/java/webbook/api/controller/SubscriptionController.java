@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
+import webbook.api.config.AuthSingleton;
 import webbook.api.config.PublicRoute;
 import webbook.api.model.Address;
 import webbook.api.model.Plan;
@@ -41,7 +42,7 @@ public class SubscriptionController implements ApiCrudControllerContract<Subscri
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Endereço inválido.");
         }
 
-        // TODO vincular usuário logado no subscription
+        subscription.setUser(AuthSingleton.user());
         subscription.setPlan(plan);
         subscription.setAddress(address);
 
