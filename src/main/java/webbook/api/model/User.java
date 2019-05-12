@@ -24,7 +24,7 @@ public class User extends Model {
     private String password;
 
     @NotNull
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String cpf;
 
     @NotNull

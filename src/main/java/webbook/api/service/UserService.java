@@ -57,4 +57,8 @@ public class UserService implements ApiCrudServiceContract<User> {
     public User getByEmail(String email) {
         return repository.findByEmail(email);
     }
+
+    public User getByCpf(String cpf) {
+        return repository.findByCpf(cpf);
+    }
 }

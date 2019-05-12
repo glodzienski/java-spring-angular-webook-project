@@ -6,4 +6,6 @@ import webbook.api.model.User;
 @Repository
 public interface UserRepository extends BaseRepository<User, String> {
     User findByEmail(String email);
+
+    User findByCpf(String cpf);
 }

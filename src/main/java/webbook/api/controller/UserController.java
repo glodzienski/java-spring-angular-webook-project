@@ -7,6 +7,7 @@ import org.springframework.web.server.ResponseStatusException;
 import webbook.api.config.PublicRoute;
 import webbook.api.model.User;
 import webbook.api.service.UserService;
+import webbook.api.util.CpfUtil;
 
 import javax.validation.Valid;
 
@@ -23,6 +24,13 @@ public class UserController implements ApiCrudControllerContract<User> {
         User currentUser = service.getByEmail(user.getEmail());
         if (currentUser != null) {
             throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "Usuário com email " + user.getEmail() + " já possui conta no sistema.");
+        }
+        if (!CpfUtil.isValid(user.getCpf())) {
+            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "CPF " + user.getCpf() + " inválido.");
+        }
+        currentUser = service.getByCpf(user.getCpf());
+        if (currentUser != null) {
+            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "Usuário com CPF " + user.getCpf() + " já possui conta no sistema.");
         }
 
         return service.store(user);
