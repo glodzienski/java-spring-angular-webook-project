@@ -18,8 +18,12 @@ public class AuthService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public AuthToken getByToken(String token) {
-        return repository.findByToken(token);
+    public AuthToken getByTokenActive(String token) {
+        AuthToken authToken = repository.findByToken(token);
+        if (authToken == null || !authToken.getActive()) {
+            return null;
+        }
+        return authToken;
     }
 
     public void registerAuthToken(AuthToken authToken){

@@ -36,7 +36,7 @@ public class AuthApiInterceptor extends HandlerInterceptorAdapter {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
         }
 
-        AuthToken authToken = authService.getByToken(token);
+        AuthToken authToken = authService.getByTokenActive(token);
         if (authToken == null) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
         }

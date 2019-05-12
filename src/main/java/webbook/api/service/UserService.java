@@ -31,7 +31,7 @@ public class UserService implements ApiCrudServiceContract<User> {
         currentUser.setLastName(requestUser.getLastName());
         currentUser.setPhotoUrl(requestUser.getPhotoUrl());
 
-        return currentUser;
+        return repository.save(currentUser);
     }
 
     @Override
