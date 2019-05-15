@@ -20,7 +20,7 @@ public class AuthApiInterceptor extends HandlerInterceptorAdapter {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        if (request.getRequestURI().equals("/error")) {
+        if (request.getRequestURI().equals("/error") || request.getMethod().equals("OPTIONS")) {
             return true;
         }
 

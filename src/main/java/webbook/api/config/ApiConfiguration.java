@@ -10,8 +10,12 @@ public class ApiConfiguration extends WebMvcConfigurerAdapter {
     @Autowired
     AuthApiInterceptor authApiInterceptor;
 
+    @Autowired
+    CorsApiInterceptor corsApiInterceptor;
+
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(corsApiInterceptor);
         registry.addInterceptor(authApiInterceptor);
     }
 }
