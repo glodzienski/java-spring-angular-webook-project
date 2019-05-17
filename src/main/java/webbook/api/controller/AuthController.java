@@ -10,6 +10,7 @@ import org.springframework.web.server.ResponseStatusException;
 import webbook.api.config.AuthSingleton;
 import webbook.api.config.PublicRoute;
 import webbook.api.dto.AuthLoginDTO;
+import webbook.api.dto.AuthTokenDTO;
 import webbook.api.model.AuthToken;
 import webbook.api.model.User;
 import webbook.api.service.AuthService;
@@ -28,7 +29,7 @@ public class AuthController {
 
     @PublicRoute
     @PostMapping("login")
-    public String login(@RequestBody @Valid AuthLoginDTO authLoginDTO) {
+    public AuthTokenDTO login(@RequestBody @Valid AuthLoginDTO authLoginDTO) {
         User user = userService.getByEmail(authLoginDTO.email);
         if (user == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário com email " + authLoginDTO.email + " não cadastrado na plataforma.");
@@ -42,7 +43,7 @@ public class AuthController {
 
             AuthToken authToken = authService.createAuthToken(user);
 
-            return authToken.getToken();
+            return new AuthTokenDTO(authToken.getToken());
         }
 
         throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "Dados de login informados estão incorretos.");
