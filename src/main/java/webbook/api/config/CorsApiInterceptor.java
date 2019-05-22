@@ -17,7 +17,8 @@ public class CorsApiInterceptor extends HandlerInterceptorAdapter {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         response.setHeader(CREDENTIALS_NAME, "true");
-        response.setHeader(ORIGIN_NAME, "http://localhost:4200");
+//        response.setHeader(ORIGIN_NAME, "http://localhost:4200");
+        response.setHeader(ORIGIN_NAME, "*");
         response.setHeader(METHODS_NAME, "GET, OPTIONS, POST, PUT, DELETE");
         response.setHeader(HEADERS_NAME, "Origin, X-Requested-With, Content-Type, Accept");
         response.setHeader(MAX_AGE_NAME, "3600");
