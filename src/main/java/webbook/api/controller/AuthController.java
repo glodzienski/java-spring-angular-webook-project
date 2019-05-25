@@ -2,13 +2,11 @@ package webbook.api.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import webbook.api.config.AuthSingleton;
 import webbook.api.config.PublicRoute;
+import webbook.api.dto.AuthInfoDTO;
 import webbook.api.dto.AuthLoginDTO;
 import webbook.api.dto.AuthTokenDTO;
 import webbook.api.model.AuthToken;
@@ -50,7 +48,17 @@ public class AuthController {
     }
 
     @PostMapping("logout")
-    public void logout(){
+    public void logout() {
         authService.invalidateAuthToken(AuthSingleton.getAuthToken());
+    }
+
+    @PostMapping("validate")
+    public AuthInfoDTO validate(@RequestBody @Valid AuthTokenDTO authTokenDTO) {
+        AuthToken authToken = authService.getByTokenActive(authTokenDTO.token);
+
+        AuthInfoDTO authInfoDTO = new AuthInfoDTO();
+        authInfoDTO.user = authToken.getUser();
+
+        return authInfoDTO;
     }
 }

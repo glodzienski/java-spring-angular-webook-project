@@ -24,6 +24,7 @@ public class User extends Model {
 
     @NotNull
     @Column(nullable = false)
+    @JsonIgnore
     private String password;
 
     @NotNull

@@ -10,4 +10,6 @@ public interface AuthTokenRepository extends JpaRepository<AuthToken, String> {
     AuthToken findByToken(String token);
 
     AuthToken findByUserAndActive(User user, Boolean active);
+
+    AuthToken findByUser(User user);
 }
