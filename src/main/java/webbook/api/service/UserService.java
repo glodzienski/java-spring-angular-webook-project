@@ -1,10 +1,13 @@
 package webbook.api.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 import webbook.api.model.User;
 import webbook.api.repository.UserRepository;
+import webbook.api.util.CpfUtil;
 import webbook.api.util.UUIDGeneratorUtil;
 
 @Service
@@ -60,5 +63,21 @@ public class UserService implements ApiCrudServiceContract<User> {
 
     public User getByCpf(String cpf) {
         return repository.findByCpf(cpf);
+    }
+
+    public void validateUserInfo(User user, Boolean isEditing){
+        User currentUser = this.getByEmail(user.getEmail());
+        if ((currentUser != null)
+                && (isEditing && !(user.getEmail().equals(currentUser.getEmail())))) {
+            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "Usuário com email " + user.getEmail() + " já possui conta no sistema.");
+        }
+        if (!CpfUtil.isValid(user.getCpf())) {
+            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "CPF " + user.getCpf() + " inválido.");
+        }
+        currentUser = this.getByCpf(user.getCpf());
+        if ((currentUser != null)
+                && (isEditing && !(user.getCpf().equals(currentUser.getCpf())))) {
+            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "Usuário com CPF " + user.getCpf() + " já possui conta no sistema.");
+        }
     }
 }

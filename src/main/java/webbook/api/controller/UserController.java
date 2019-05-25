@@ -21,17 +21,10 @@ public class UserController implements ApiCrudControllerContract<User> {
     @Override
     @PublicRoute
     public User store(@Valid User user) {
-        User currentUser = service.getByEmail(user.getEmail());
-        if (currentUser != null) {
-            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "Usuário com email " + user.getEmail() + " já possui conta no sistema.");
+        if (user.getPassword().isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "Por favor informe uma senha válida para se cadastrar no sistema.");
         }
-        if (!CpfUtil.isValid(user.getCpf())) {
-            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "CPF " + user.getCpf() + " inválido.");
-        }
-        currentUser = service.getByCpf(user.getCpf());
-        if (currentUser != null) {
-            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "Usuário com CPF " + user.getCpf() + " já possui conta no sistema.");
-        }
+        service.validateUserInfo(user, false);
 
         return service.store(user);
     }
@@ -42,6 +35,7 @@ public class UserController implements ApiCrudControllerContract<User> {
         if (currentUser == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado.");
         }
+        service.validateUserInfo(user, true);
 
         return service.update(currentUser, user);
     }

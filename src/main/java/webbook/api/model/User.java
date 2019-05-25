@@ -22,7 +22,6 @@ public class User extends Model {
     @Column(nullable = false, unique = true)
     private String email;
 
-    @NotNull
     @Column(nullable = false)
     @JsonIgnore
     private String password;
