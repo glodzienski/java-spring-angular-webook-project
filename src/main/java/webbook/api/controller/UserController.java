@@ -7,7 +7,6 @@ import org.springframework.web.server.ResponseStatusException;
 import webbook.api.config.PublicRoute;
 import webbook.api.model.User;
 import webbook.api.service.UserService;
-import webbook.api.util.CpfUtil;
 
 import javax.validation.Valid;
 

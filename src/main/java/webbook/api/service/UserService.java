@@ -34,7 +34,10 @@ public class UserService implements ApiCrudServiceContract<User> {
         currentUser.setLastName(requestUser.getLastName());
         currentUser.setPhotoUrl(requestUser.getPhotoUrl());
 
-        return repository.save(currentUser);
+        User userSaved = repository.save(currentUser);
+        userSaved.setPassword("");
+
+        return userSaved;
     }
 
     @Override
@@ -54,7 +57,10 @@ public class UserService implements ApiCrudServiceContract<User> {
 
     @Override
     public User getByCode(String code) {
-        return repository.findByCode(code);
+        User user = repository.findByCode(code);
+        user.setPassword("");
+
+        return user;
     }
 
     public User getByEmail(String email) {

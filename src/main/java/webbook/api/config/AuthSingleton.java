@@ -10,17 +10,17 @@ public class AuthSingleton {
 
     private static AuthToken authToken;
 
-    private static void initializeUserByAuthToke() {
+    private static void initializeUserByAuthToken() {
         if (authToken == null) {
             throw new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE, "Erro com a autenticação do usuário.");
         }
 
-        loggedUser = authToken.getUser();
+        loggedUser =  authToken.getUser();
     }
 
     public static User user() {
         if (loggedUser == null) {
-            initializeUserByAuthToke();
+            initializeUserByAuthToken();
         }
 
         return loggedUser;
@@ -32,5 +32,9 @@ public class AuthSingleton {
 
     public static void setAuthToken(AuthToken authToken) {
         AuthSingleton.authToken = authToken;
+    }
+
+    public static void refreshUser() {
+        initializeUserByAuthToken();
     }
 }

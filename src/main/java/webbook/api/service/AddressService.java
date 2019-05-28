@@ -47,7 +47,7 @@ public class AddressService implements ApiCrudServiceContract<Address> {
 
     @Override
     public Iterable<Address> list() {
-        return AuthSingleton.user().getAddress();
+        return repository.findAllByUser(AuthSingleton.user());
     }
 
     @Override
