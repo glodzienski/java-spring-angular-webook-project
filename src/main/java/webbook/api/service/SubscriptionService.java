@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import webbook.api.model.Subscription;
 import webbook.api.repository.SubscriptionRepository;
-import webbook.api.util.UUIDGeneratorUtil;
+import webbook.api.helper.UUIDGeneratorHelper;
 
 import java.util.Date;
 
@@ -21,7 +21,7 @@ public class SubscriptionService implements ApiCrudServiceContract<Subscription>
 
     @Override
     public Subscription store(Subscription subscription) {
-        subscription.setCode(UUIDGeneratorUtil.get());
+        subscription.setCode(UUIDGeneratorHelper.get());
         subscription.setHiringDate(new Date());
         // TODO falta adicionar o email do usuário, pegando do objeto usuário do subscription
 

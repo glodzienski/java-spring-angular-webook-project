@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import webbook.api.model.Publisher;
 import webbook.api.repository.PublisherRepository;
-import webbook.api.util.UUIDGeneratorUtil;
+import webbook.api.helper.UUIDGeneratorHelper;
 
 @Service
 public class PublisherService implements ApiCrudServiceContract<Publisher> {
@@ -19,7 +19,7 @@ public class PublisherService implements ApiCrudServiceContract<Publisher> {
 
     @Override
     public Publisher store(Publisher publisher) {
-        publisher.setCode(UUIDGeneratorUtil.get());
+        publisher.setCode(UUIDGeneratorHelper.get());
 
         return repository.save(publisher);
     }

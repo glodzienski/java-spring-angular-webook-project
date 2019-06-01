@@ -37,7 +37,12 @@ public class PublisherController implements ApiCrudControllerContract<Publisher>
 
     @Override
     public Publisher getByCode(@PathVariable String code) {
-        return service.getByCode(code);
+        Publisher publisher = service.getByCode(code);
+        if (publisher == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Editora não encontrada.");
+        }
+
+        return publisher;
     }
 
     @Override

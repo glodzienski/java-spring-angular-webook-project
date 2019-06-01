@@ -35,7 +35,12 @@ public class AuthorController implements ApiCrudControllerContract<Author> {
 
     @Override
     public Author getByCode(@PathVariable String code) {
-        return service.getByCode(code);
+        Author author = service.getByCode(code);
+        if (author == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Autor não encontrado.");
+        }
+
+        return author;
     }
 
     @Override

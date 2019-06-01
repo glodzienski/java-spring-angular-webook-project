@@ -1,8 +1,8 @@
-package webbook.api.util;
+package webbook.api.helper;
 
 import java.util.InputMismatchException;
 
-public class CpfUtil {
+public class CpfHelper {
     public static boolean isValid(String CPF) {
         // considera-se erro CPF's formados por uma sequencia de numeros iguais
         if (CPF.equals("00000000000") ||

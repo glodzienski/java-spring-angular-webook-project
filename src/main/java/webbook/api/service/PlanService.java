@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import webbook.api.model.Plan;
 import webbook.api.repository.PlanRepository;
-import webbook.api.util.UUIDGeneratorUtil;
+import webbook.api.helper.UUIDGeneratorHelper;
 
 @Service
 public class PlanService implements ApiCrudServiceContract<Plan> {
@@ -19,7 +19,7 @@ public class PlanService implements ApiCrudServiceContract<Plan> {
 
     @Override
     public Plan store(Plan user) {
-        user.setCode(UUIDGeneratorUtil.get());
+        user.setCode(UUIDGeneratorHelper.get());
 
         return repository.save(user);
     }

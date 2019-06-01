@@ -61,7 +61,12 @@ public class SubscriptionController implements ApiCrudControllerContract<Subscri
 
     @Override
     public Subscription getByCode(@PathVariable String code) {
-        return service.getByCode(code);
+        Subscription subscription = service.getByCode(code);
+        if (subscription == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Assinatura não encontrada.");
+        }
+
+        return subscription;
     }
 
     @Override

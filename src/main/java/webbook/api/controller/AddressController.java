@@ -38,7 +38,12 @@ public class AddressController implements ApiCrudControllerContract<Address> {
 
     @Override
     public Address getByCode(@PathVariable String code) {
-        return service.getByCode(code);
+        Address address = service.getByCode(code);
+        if (address == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Endereço não encontrado.");
+        }
+
+        return address;
     }
 
     @Override

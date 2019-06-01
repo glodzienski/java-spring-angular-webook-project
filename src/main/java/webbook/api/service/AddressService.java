@@ -8,7 +8,7 @@ import org.springframework.web.server.ResponseStatusException;
 import webbook.api.config.AuthSingleton;
 import webbook.api.model.Address;
 import webbook.api.repository.AddressRepository;
-import webbook.api.util.UUIDGeneratorUtil;
+import webbook.api.helper.UUIDGeneratorHelper;
 
 @Service
 public class AddressService implements ApiCrudServiceContract<Address> {
@@ -22,7 +22,7 @@ public class AddressService implements ApiCrudServiceContract<Address> {
 
     @Override
     public Address store(Address address) {
-        address.setCode(UUIDGeneratorUtil.get());
+        address.setCode(UUIDGeneratorHelper.get());
 
         return repository.save(address);
     }

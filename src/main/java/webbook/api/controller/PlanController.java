@@ -21,23 +21,28 @@ public class PlanController implements ApiCrudControllerContract<Plan> {
     }
 
     @Override
-    public Plan store(@Valid Plan user) {
-        return service.store(user);
+    public Plan store(@Valid Plan plan) {
+        return service.store(plan);
     }
 
     @Override
-    public Plan update(String code, @Valid Plan user) {
+    public Plan update(String code, @Valid Plan plan) {
         Plan currentPlan = service.getByCode(code);
         if (currentPlan == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Plano não encontrado.");
         }
 
-        return service.update(currentPlan, user);
+        return service.update(currentPlan, plan);
     }
 
     @Override
     public Plan getByCode(@PathVariable String code) {
-        return service.getByCode(code);
+        Plan plan = service.getByCode(code);
+        if (plan == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Plano não encontrado.");
+        }
+
+        return plan;
     }
 
     @Override
@@ -47,11 +52,11 @@ public class PlanController implements ApiCrudControllerContract<Plan> {
 
     @Override
     public void destroy(String code) {
-        Plan user = service.getByCode(code);
-        if (user == null) {
+        Plan plan = service.getByCode(code);
+        if (plan == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Plano não encontrado.");
         }
 
-        service.destroy(user);
+        service.destroy(plan);
     }
 }

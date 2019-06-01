@@ -41,7 +41,12 @@ public class UserController implements ApiCrudControllerContract<User> {
 
     @Override
     public User getByCode(@PathVariable String code) {
-        return service.getByCode(code);
+        User user = service.getByCode(code);
+        if (user == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado.");
+        }
+
+        return user;
     }
 
     @Override

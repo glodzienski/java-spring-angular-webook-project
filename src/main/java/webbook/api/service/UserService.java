@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import webbook.api.model.User;
 import webbook.api.repository.UserRepository;
-import webbook.api.util.CpfUtil;
-import webbook.api.util.UUIDGeneratorUtil;
+import webbook.api.helper.CpfHelper;
+import webbook.api.helper.UUIDGeneratorHelper;
 
 @Service
 public class UserService implements ApiCrudServiceContract<User> {
@@ -20,7 +20,7 @@ public class UserService implements ApiCrudServiceContract<User> {
 
     @Override
     public User store(User user) {
-        user.setCode(UUIDGeneratorUtil.get());
+        user.setCode(UUIDGeneratorHelper.get());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         return repository.save(user);
@@ -77,7 +77,7 @@ public class UserService implements ApiCrudServiceContract<User> {
                 && (isEditing && !(user.getEmail().equals(currentUser.getEmail())))) {
             throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "Usuário com email " + user.getEmail() + " já possui conta no sistema.");
         }
-        if (!CpfUtil.isValid(user.getCpf())) {
+        if (!CpfHelper.isValid(user.getCpf())) {
             throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "CPF " + user.getCpf() + " inválido.");
         }
         currentUser = this.getByCpf(user.getCpf());

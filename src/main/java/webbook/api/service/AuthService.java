@@ -8,7 +8,7 @@ import webbook.api.dto.AuthLoginDTO;
 import webbook.api.model.AuthToken;
 import webbook.api.model.User;
 import webbook.api.repository.AuthTokenRepository;
-import webbook.api.util.UUIDGeneratorUtil;
+import webbook.api.helper.UUIDGeneratorHelper;
 
 @Service
 public class AuthService {
@@ -47,7 +47,7 @@ public class AuthService {
         AuthToken authToken = new AuthToken();
         authToken.setUser(user);
         authToken.setActive(true);
-        authToken.setToken(UUIDGeneratorUtil.get());
+        authToken.setToken(UUIDGeneratorHelper.get());
 
         return repository.save(authToken);
     }

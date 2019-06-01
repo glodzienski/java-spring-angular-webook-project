@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import webbook.api.model.BookCategory;
 import webbook.api.repository.BookCategoryRepository;
-import webbook.api.util.UUIDGeneratorUtil;
+import webbook.api.helper.UUIDGeneratorHelper;
 
 @Service
 public class BookCategoryService implements ApiCrudServiceContract<BookCategory> {
@@ -17,7 +17,7 @@ public class BookCategoryService implements ApiCrudServiceContract<BookCategory>
 
     @Override
     public BookCategory store(BookCategory bookCategory) {
-        bookCategory.setCode(UUIDGeneratorUtil.get());
+        bookCategory.setCode(UUIDGeneratorHelper.get());
 
         return repository.save(bookCategory);
     }

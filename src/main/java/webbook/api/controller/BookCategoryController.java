@@ -33,7 +33,12 @@ public class BookCategoryController implements ApiCrudControllerContract<BookCat
 
     @Override
     public BookCategory getByCode(@PathVariable String code) {
-        return service.getByCode(code);
+        BookCategory bookCategory = service.getByCode(code);
+        if (bookCategory == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Categoria de livro solicitada não encontrada.");
+        }
+
+        return bookCategory;
     }
 
     @Override
