@@ -1,5 +1,6 @@
 package webbook.api.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,11 +15,8 @@ import javax.validation.Valid;
 @RequestMapping("/api/plan")
 public class PlanController implements ApiCrudControllerContract<Plan> {
 
+    @Autowired
     private PlanService service;
-
-    public PlanController(PlanService service) {
-        this.service = service;
-    }
 
     @Override
     public Plan store(@Valid Plan plan) {
