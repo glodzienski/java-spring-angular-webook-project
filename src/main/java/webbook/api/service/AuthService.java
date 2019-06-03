@@ -1,14 +1,22 @@
 package webbook.api.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import webbook.api.config.AuthSingleton;
+import webbook.api.helper.AuthHelper;
 import webbook.api.dto.AuthLoginDTO;
 import webbook.api.model.AuthToken;
 import webbook.api.model.User;
 import webbook.api.repository.AuthTokenRepository;
 import webbook.api.helper.UUIDGeneratorHelper;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Service
 public class AuthService {
@@ -18,6 +26,9 @@ public class AuthService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Resource(name = "authenticationManager")
+    private AuthenticationManager authManager;
+
     public AuthToken getByTokenActive(String token) {
         AuthToken authToken = repository.findByToken(token);
         if (authToken == null || !authToken.getActive()) {
@@ -26,11 +37,19 @@ public class AuthService {
         return authToken;
     }
 
-    public void registerAuthToken(AuthToken authToken){
-        AuthSingleton.setAuthToken(authToken);
+    public void registerAuthInfos(HttpServletRequest request, AuthToken authToken) {
+        UsernamePasswordAuthenticationToken authReq = new UsernamePasswordAuthenticationToken(
+                authToken.getUser(), authToken
+        );
+
+        SecurityContext sc = SecurityContextHolder.getContext();
+        sc.setAuthentication(authReq);
+
+        HttpSession session = request.getSession(true);
+        session.setAttribute("SPRING_SECURITY_CONTEXT", sc);
     }
 
-    public Boolean validatePassword (AuthLoginDTO authLoginDTO, User user) {
+    public Boolean validatePassword(AuthLoginDTO authLoginDTO, User user) {
         return passwordEncoder.matches(authLoginDTO.password, user.getPassword());
     }
 
@@ -43,7 +62,7 @@ public class AuthService {
         repository.save(authToken);
     }
 
-    public AuthToken createAuthToken(User user){
+    public AuthToken createAuthToken(User user) {
         AuthToken authToken = new AuthToken();
         authToken.setUser(user);
         authToken.setActive(true);

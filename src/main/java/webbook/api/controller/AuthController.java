@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-import webbook.api.config.AuthSingleton;
+import webbook.api.helper.AuthHelper;
 import webbook.api.config.PublicRoute;
 import webbook.api.dto.AuthInfoDTO;
 import webbook.api.dto.AuthLoginDTO;
@@ -49,7 +49,7 @@ public class AuthController {
 
     @PostMapping("logout")
     public void logout() {
-        authService.invalidateAuthToken(AuthSingleton.getAuthToken());
+        authService.invalidateAuthToken(AuthHelper.authToken());
     }
 
     @PostMapping("validate")

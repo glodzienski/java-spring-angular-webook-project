@@ -6,7 +6,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
-import webbook.api.config.AuthSingleton;
+
+import webbook.api.helper.AuthHelper;
 import webbook.api.model.Book;
 import webbook.api.model.BookFavorite;
 import webbook.api.service.BookFavoriteService;
@@ -30,9 +31,12 @@ public class BookFavoriteController implements ApiCrudControllerContract<BookFav
         if (book == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Obra não encontrada.");
         }
+        if (service.validateIfBookHasAlreadyFavoritedByUser(book, AuthHelper.user())) {
+            return null;
+        }
 
         bookFavorite.setBook(book);
-        bookFavorite.setUser(AuthSingleton.user());
+        bookFavorite.setUser(AuthHelper.user());
 
         return service.store(bookFavorite);
     }

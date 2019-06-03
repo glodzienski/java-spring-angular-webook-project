@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-import webbook.api.config.AuthSingleton;
+import webbook.api.helper.AuthHelper;
 import webbook.api.model.Address;
 import webbook.api.repository.AddressRepository;
 import webbook.api.helper.UUIDGeneratorHelper;
@@ -47,7 +47,7 @@ public class AddressService implements ApiCrudServiceContract<Address> {
 
     @Override
     public Iterable<Address> list() {
-        return repository.findAllByUser(AuthSingleton.user());
+        return repository.findAllByUser(AuthHelper.user());
     }
 
     @Override

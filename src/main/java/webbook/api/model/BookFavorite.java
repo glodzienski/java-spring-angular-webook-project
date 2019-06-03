@@ -8,8 +8,6 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "tb_book_favorite")
 public class BookFavorite extends Model {
-    @JsonIgnore
-    @NotNull
     @Id
     @Column(nullable = false, unique = true)
     private String code;
@@ -20,7 +18,6 @@ public class BookFavorite extends Model {
     private Book book;
 
     @JsonIgnore
-    @NotNull
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;

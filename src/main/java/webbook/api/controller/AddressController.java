@@ -5,7 +5,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
-import webbook.api.config.AuthSingleton;
+
+import webbook.api.helper.AuthHelper;
 import webbook.api.model.Address;
 import webbook.api.service.AddressService;
 
@@ -23,7 +24,7 @@ public class AddressController implements ApiCrudControllerContract<Address> {
 
     @Override
     public Address store(@Valid Address address) {
-        address.setUser(AuthSingleton.user());
+        address.setUser(AuthHelper.user());
 
         return service.store(address);
     }

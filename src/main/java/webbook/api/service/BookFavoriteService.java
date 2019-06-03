@@ -2,8 +2,12 @@ package webbook.api.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import webbook.api.helper.AuthHelper;
 import webbook.api.helper.UUIDGeneratorHelper;
+import webbook.api.model.Book;
 import webbook.api.model.BookFavorite;
+import webbook.api.model.User;
 import webbook.api.repository.BookFavoriteRepository;
 
 @Service
@@ -33,9 +37,15 @@ public class BookFavoriteService implements ApiCrudServiceContract<BookFavorite>
         return null;
     }
 
+    public Boolean validateIfBookHasAlreadyFavoritedByUser(Book book, User user) {
+        BookFavorite bookFavorite = repository.findByUserAndBook(user, book);
+
+        return bookFavorite != null;
+    }
+
     @Override
     public Iterable<BookFavorite> list() {
-        return null;
+        return repository.findAllByUser(AuthHelper.user());
     }
 
     @Override

@@ -23,7 +23,7 @@ public class SubscriptionService implements ApiCrudServiceContract<Subscription>
     public Subscription store(Subscription subscription) {
         subscription.setCode(UUIDGeneratorHelper.get());
         subscription.setHiringDate(new Date());
-        // TODO falta adicionar o email do usuário, pegando do objeto usuário do subscription
+        subscription.setEmailContact(subscription.getUser().getEmail());
 
         return repository.save(subscription);
     }
