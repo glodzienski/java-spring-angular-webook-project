@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import webbook.api.helper.AuthHelper;
-import webbook.api.entity.Book;
-import webbook.api.entity.BookFavorite;
+import webbook.api.model.entity.Book;
+import webbook.api.model.entity.BookFavorite;
 import webbook.api.service.BookFavoriteService;
 import webbook.api.service.BookService;
 

@@ -1,4 +1,4 @@
-package webbook.api.dto;
+package webbook.api.model.dto;
 
 import javax.validation.constraints.NotNull;
 

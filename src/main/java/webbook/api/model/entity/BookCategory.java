@@ -1,4 +1,4 @@
-package webbook.api.entity;
+package webbook.api.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -6,8 +6,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "tb_plan")
-public class Plan extends Model {
+@Table(name = "tb_book_category")
+public class BookCategory extends Model {
     @JsonIgnore
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,8 +21,8 @@ public class Plan extends Model {
     private String name;
 
     @NotNull
-    @Column(columnDefinition = "int default 0")
-    private Float value;
+    @Column(name = "description", nullable = false)
+    private String description;
 
     public Integer getId() {
         return id;
@@ -48,11 +48,11 @@ public class Plan extends Model {
         this.name = name;
     }
 
-    public Float getValue() {
-        return value;
+    public String getDescription() {
+        return description;
     }
 
-    public void setValue(Float value) {
-        this.value = value;
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

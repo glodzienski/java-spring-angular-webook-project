@@ -6,7 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import webbook.api.helper.AuthHelper;
-import webbook.api.entity.Address;
+import webbook.api.model.entity.Address;
 import webbook.api.repository.AddressRepository;
 import webbook.api.helper.UUIDGeneratorHelper;
 

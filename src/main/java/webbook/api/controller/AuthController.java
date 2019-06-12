@@ -6,11 +6,11 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import webbook.api.helper.AuthHelper;
 import webbook.api.config.PublicRoute;
-import webbook.api.dto.AuthInfoDTO;
-import webbook.api.dto.AuthLoginDTO;
-import webbook.api.dto.AuthTokenDTO;
-import webbook.api.entity.AuthToken;
-import webbook.api.entity.User;
+import webbook.api.model.dto.AuthInfoDTO;
+import webbook.api.model.dto.AuthLoginDTO;
+import webbook.api.model.dto.AuthTokenDTO;
+import webbook.api.model.entity.AuthToken;
+import webbook.api.model.entity.User;
 import webbook.api.service.AuthService;
 import webbook.api.service.UserService;
 

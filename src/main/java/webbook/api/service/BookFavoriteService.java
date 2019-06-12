@@ -5,9 +5,9 @@ import org.springframework.stereotype.Service;
 
 import webbook.api.helper.AuthHelper;
 import webbook.api.helper.UUIDGeneratorHelper;
-import webbook.api.entity.Book;
-import webbook.api.entity.BookFavorite;
-import webbook.api.entity.User;
+import webbook.api.model.entity.Book;
+import webbook.api.model.entity.BookFavorite;
+import webbook.api.model.entity.User;
 import webbook.api.repository.BookFavoriteRepository;
 
 @Service

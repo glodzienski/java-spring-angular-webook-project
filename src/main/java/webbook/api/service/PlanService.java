@@ -3,7 +3,7 @@ package webbook.api.service;
 import org.jetbrains.annotations.Contract;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import webbook.api.entity.Plan;
+import webbook.api.model.entity.Plan;
 import webbook.api.repository.PlanRepository;
 import webbook.api.helper.UUIDGeneratorHelper;
 

@@ -5,7 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-import webbook.api.entity.User;
+import webbook.api.model.entity.User;
 import webbook.api.repository.UserRepository;
 import webbook.api.helper.CpfHelper;
 import webbook.api.helper.UUIDGeneratorHelper;

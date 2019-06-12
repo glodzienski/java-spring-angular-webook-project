@@ -7,9 +7,9 @@ import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import webbook.api.dto.AuthLoginDTO;
-import webbook.api.entity.AuthToken;
-import webbook.api.entity.User;
+import webbook.api.model.dto.AuthLoginDTO;
+import webbook.api.model.entity.AuthToken;
+import webbook.api.model.entity.User;
 import webbook.api.repository.AuthTokenRepository;
 import webbook.api.helper.UUIDGeneratorHelper;
 
