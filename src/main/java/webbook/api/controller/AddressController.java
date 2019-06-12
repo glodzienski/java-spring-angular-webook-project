@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import webbook.api.helper.AuthHelper;
-import webbook.api.model.Address;
+import webbook.api.entity.Address;
 import webbook.api.service.AddressService;
 
 import javax.validation.Valid;

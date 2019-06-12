@@ -1,6 +1,6 @@
 package webbook.api.dto;
 
-import webbook.api.model.User;
+import webbook.api.entity.User;
 
 public class AuthInfoDTO {
     public User user;

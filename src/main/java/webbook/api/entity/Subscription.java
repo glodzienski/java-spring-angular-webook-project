@@ -1,4 +1,4 @@
-package webbook.api.model;
+package webbook.api.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
-import webbook.api.model.AuthToken;
+import webbook.api.entity.AuthToken;
 import webbook.api.service.AuthService;
 
 import javax.servlet.http.HttpServletRequest;

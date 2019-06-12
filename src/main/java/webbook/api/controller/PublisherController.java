@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
-import webbook.api.model.Publisher;
+import webbook.api.entity.Publisher;
 import webbook.api.service.PublisherService;
 
 import javax.validation.Valid;

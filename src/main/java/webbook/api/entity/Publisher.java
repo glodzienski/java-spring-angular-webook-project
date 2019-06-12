@@ -1,13 +1,14 @@
-package webbook.api.model;
+package webbook.api.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 @Entity
-@Table(name = "tb_plan")
-public class Plan extends Model {
+@Table(name = "tb_publisher")
+public class Publisher extends Model {
     @JsonIgnore
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,8 +22,13 @@ public class Plan extends Model {
     private String name;
 
     @NotNull
-    @Column(columnDefinition = "int default 0")
-    private Float value;
+    @Temporal(TemporalType.DATE)
+    @Column(name = "foundation_date", nullable = false)
+    private Date foundationDate;
+
+    @NotNull
+    @Column(name = "email_contact", nullable = false)
+    private String emailContact;
 
     public Integer getId() {
         return id;
@@ -48,11 +54,19 @@ public class Plan extends Model {
         this.name = name;
     }
 
-    public Float getValue() {
-        return value;
+    public Date getFoundationDate() {
+        return foundationDate;
     }
 
-    public void setValue(Float value) {
-        this.value = value;
+    public void setFoundationDate(Date foundationDate) {
+        this.foundationDate = foundationDate;
+    }
+
+    public String getEmailContact() {
+        return emailContact;
+    }
+
+    public void setEmailContact(String emailContact) {
+        this.emailContact = emailContact;
     }
 }

@@ -5,7 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import webbook.api.config.PublicRoute;
-import webbook.api.model.User;
+import webbook.api.entity.User;
 import webbook.api.service.UserService;
 
 import javax.validation.Valid;

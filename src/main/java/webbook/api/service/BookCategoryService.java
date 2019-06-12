@@ -2,7 +2,7 @@ package webbook.api.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import webbook.api.model.BookCategory;
+import webbook.api.entity.BookCategory;
 import webbook.api.repository.BookCategoryRepository;
 import webbook.api.helper.UUIDGeneratorHelper;
 

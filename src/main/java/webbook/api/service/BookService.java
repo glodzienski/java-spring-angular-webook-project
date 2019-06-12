@@ -2,7 +2,7 @@ package webbook.api.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import webbook.api.model.Book;
+import webbook.api.entity.Book;
 import webbook.api.repository.BookRepository;
 
 @Service

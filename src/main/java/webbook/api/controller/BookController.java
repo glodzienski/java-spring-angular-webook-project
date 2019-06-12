@@ -7,7 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import webbook.api.config.PublicRoute;
-import webbook.api.model.*;
+import webbook.api.entity.*;
 import webbook.api.service.*;
 import webbook.api.helper.UUIDGeneratorHelper;
 

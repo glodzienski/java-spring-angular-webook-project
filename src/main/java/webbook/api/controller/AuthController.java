@@ -9,8 +9,8 @@ import webbook.api.config.PublicRoute;
 import webbook.api.dto.AuthInfoDTO;
 import webbook.api.dto.AuthLoginDTO;
 import webbook.api.dto.AuthTokenDTO;
-import webbook.api.model.AuthToken;
-import webbook.api.model.User;
+import webbook.api.entity.AuthToken;
+import webbook.api.entity.User;
 import webbook.api.service.AuthService;
 import webbook.api.service.UserService;
 

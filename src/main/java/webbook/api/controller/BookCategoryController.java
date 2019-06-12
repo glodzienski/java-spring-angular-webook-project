@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-import webbook.api.model.BookCategory;
+import webbook.api.entity.BookCategory;
 import webbook.api.service.BookCategoryService;
 
 import javax.validation.Valid;

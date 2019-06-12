@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-import webbook.api.model.BookInfo;
+import webbook.api.entity.BookInfo;
 import webbook.api.repository.BookInfoRepository;
 
 @Service
