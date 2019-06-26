@@ -1,15 +1,12 @@
 package webbook.api.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "tb_book")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "code")
 public class Book extends Model {
     @JsonIgnore
     @Id
@@ -50,9 +47,6 @@ public class Book extends Model {
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "publisher_id", nullable = false)
     private Publisher publisher;
-
-    @OneToOne(fetch = FetchType.EAGER, mappedBy = "book")
-    private BookFavorite bookFavorite;
 
     public Integer getId() {
         return id;
@@ -140,13 +134,5 @@ public class Book extends Model {
 
     public void setPublisher(Publisher publisher) {
         this.publisher = publisher;
-    }
-
-    public BookFavorite getBookFavorite() {
-        return bookFavorite;
-    }
-
-    public void setBookFavorite(BookFavorite bookFavorite) {
-        this.bookFavorite = bookFavorite;
     }
 }
