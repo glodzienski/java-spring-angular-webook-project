@@ -1,13 +1,15 @@
 package webbook.api.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "tb_book")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Book extends Model {
     @JsonIgnore
     @Id
@@ -50,7 +52,6 @@ public class Book extends Model {
     private Publisher publisher;
 
     @OneToOne(fetch = FetchType.EAGER, mappedBy = "book")
-    @JsonBackReference
     private BookFavorite bookFavorite;
 
     public Integer getId() {
