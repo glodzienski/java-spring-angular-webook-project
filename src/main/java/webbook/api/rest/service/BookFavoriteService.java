@@ -34,7 +34,7 @@ public class BookFavoriteService implements ApiCrudServiceContract<BookFavorite>
 
     @Override
     public BookFavorite getByCode(String code) {
-        return null;
+        return repository.findByCode(code);
     }
 
     public Boolean validateIfBookHasAlreadyFavoritedByUser(Book book, User user) {
