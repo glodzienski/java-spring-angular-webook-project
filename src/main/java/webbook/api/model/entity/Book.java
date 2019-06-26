@@ -48,7 +48,7 @@ public class Book extends Model {
     @JoinColumn(name = "publisher_id", nullable = false)
     private Publisher publisher;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER, mappedBy = "book")
     private BookFavorite bookFavorite;
 
     public Integer getId() {
