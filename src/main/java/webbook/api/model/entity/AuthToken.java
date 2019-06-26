@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "tb_auth_token")
-public class AuthToken {
+public class AuthToken extends Model {
     @Id
     private String token;
 
