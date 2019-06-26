@@ -1,6 +1,7 @@
 package webbook.api.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -12,10 +13,10 @@ public class BookFavorite extends Model {
     @Column(nullable = false, unique = true)
     private String code;
 
-    @JsonIgnore
     @NotNull
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "book_id", nullable = false)
+    @JsonManagedReference
     private Book book;
 
     @JsonIgnore

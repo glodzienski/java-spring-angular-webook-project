@@ -1,5 +1,6 @@
 package webbook.api.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -49,6 +50,7 @@ public class Book extends Model {
     private Publisher publisher;
 
     @OneToOne(fetch = FetchType.EAGER, mappedBy = "book")
+    @JsonBackReference
     private BookFavorite bookFavorite;
 
     public Integer getId() {
