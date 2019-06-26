@@ -48,6 +48,9 @@ public class Book extends Model {
     @JoinColumn(name = "publisher_id", nullable = false)
     private Publisher publisher;
 
+    @OneToOne(fetch = FetchType.EAGER)
+    private BookFavorite bookFavorite;
+
     public Integer getId() {
         return id;
     }
@@ -134,5 +137,13 @@ public class Book extends Model {
 
     public void setPublisher(Publisher publisher) {
         this.publisher = publisher;
+    }
+
+    public BookFavorite getBookFavorite() {
+        return bookFavorite;
+    }
+
+    public void setBookFavorite(BookFavorite bookFavorite) {
+        this.bookFavorite = bookFavorite;
     }
 }
