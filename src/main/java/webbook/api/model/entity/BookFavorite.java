@@ -12,6 +12,7 @@ public class BookFavorite extends Model {
     @Column(nullable = false, unique = true)
     private String code;
 
+    @JsonIgnore
     @NotNull
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "book_id", nullable = false)
