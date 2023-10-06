@@ -1,0 +1,33 @@
+<div id="login-page" class="container-fluid">
+    <div class="row">
+        <div class="col l4 offset-l4 s12">
+            <mat-card id="login-card">
+                <mat-card-title class="center-align">Login</mat-card-title>
+                <mat-card-content>
+                    <div [formGroup]="loginForm" class="row">
+                        <mat-form-field class="col s12">
+                            <mat-label>Email</mat-label>
+                            <input matInput formControlName="email" type="email">
+                            <mat-error>Por favor, informe um email válido</mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="col s12">
+                            <mat-label>Senha</mat-label>
+                            <input matInput formControlName="password" type="password">
+                            <mat-error>Por favor, informe uma senha</mat-error>
+                        </mat-form-field>
+                        <div class="col s6 offset-s3 center-align">
+                            <button mat-button
+                                    (click)="onClickLogin()"
+                                    class="col s12 indigo darken-2 white-text">
+                                Login
+                            </button>
+                        </div>
+                    </div>
+                    <div class="center-align">
+                        <a routerLink="/register" routerLinkActive="active">Cadastro</a>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>
